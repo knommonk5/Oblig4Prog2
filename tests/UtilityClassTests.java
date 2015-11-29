@@ -34,20 +34,20 @@ public class UtilityClassTests {
 
 	@Test
 	public void DeciTilBin_NormalDeci_BurdeGiBinary() {
-		assertEquals(0, Utility.deciToBinConv("0"));
-		assertEquals(01111011, Utility.deciToBinConv("123"));
-		assertEquals(0000001010001110, Utility.deciToBinConv("654"));
+		assertEquals("000000000000000000000010", Utility.deciToBinConv(2));
+		assertEquals("000000000000000001111011", Utility.deciToBinConv(123));
+		assertEquals("000000000000001010001110", Utility.deciToBinConv(654));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void DeciTilBin_ForStorDeci_SkalGiException() {
-		Utility.deciToBinConv("987654321987654321");
+		Utility.deciToBinConv(16777216);
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void DeciTilBin_NegativDeci_SkalGiError() {
-		Utility.deciToBinConv("-987");
-	}
+	/*
+	 * @Test(expected = IllegalArgumentException.class) public void
+	 * DeciTilBin_NegativDeci_SkalGiError() { Utility.deciToBinConv(-987); }
+	 */
 
 	@Test
 	public void HexTilDeci_NormalHex_BurdeGiDeci() {
@@ -66,21 +66,17 @@ public class UtilityClassTests {
 		Utility.hexToDeciConv("123DAYUM");
 	}
 
+
 	@Test
 	public void DeciTilHex_NormalDeci_BurdeGiVanligHex() {
-		assertEquals((123F), Utility.deciToHexConv("4671"));
-		assertEquals((1F), Utility.deciToHexConv("31"));
+		assertEquals(("00123F"), Utility.deciToHexConv(4671));
+		assertEquals(("00001F"), Utility.deciToHexConv(31));
 	}
 
-	@Test(expected = IllegalArgumentException.class)
-	public void DeciTilHex_NegativUlovligDec_SkalKasteException() {
-		Utility.deciToHexConv("-54");
-	}
 
-	/*@Test
-	public void BitwiseAND_NormalInput_Burdegi24BitUfall() {
-	
-	}*/
+	@Test public void BitwiseAND_NormalInput_Burdegi24BitUfall() {
+		assertEquals(("0001"),Utility.bitwiseAnd("0001","0011"));
+	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void BitwiseAND_ForLangString_ThrowException() {
@@ -92,10 +88,9 @@ public class UtilityClassTests {
 		Utility.bitwiseAnd(uBinary, sBinary);
 	}
 
-	/*@Test
-	public void BitwiseOR_NormalInput_Burdegi24BitUfall() {
-
-	}*/
+	@Test public void BitwiseOR_NormalInput_Burdegi24BitUfall() {
+		
+	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void BitwiseOR__ForLangString_ThrowException() {
