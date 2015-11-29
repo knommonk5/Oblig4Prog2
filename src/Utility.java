@@ -72,13 +72,13 @@ public class Utility {
 	private static String andOp(char[] fBinary, char[] sBinary) {
 		StringBuilder sBuild = new StringBuilder("");
 		int i = 0;
-		while (i < Bin_Length - 1) {
+		while (i < Bin_Length) {
 			sBuild.append((fBinary[i] == '1' && sBinary[i] == '1') ? 1 : 0);
 		}
 		return sBuild.toString();
 	}
 
-	public static String bitwiseOR(String fBinary, String sBinary) {
+	public static String bitwiseOr(String fBinary, String sBinary) {
 		bitwiseLengthCheck(fBinary, sBinary);
 		bitwiseCharCheck(fBinary, sBinary);
 		return (String) orOp(fBinary.toCharArray(), sBinary.toCharArray());
@@ -133,8 +133,8 @@ public class Utility {
 	}
 
 	private static void bitwiseLengthCheck(String fBinary, String sBinary) {
-		if (fBinary.length() < Bin_Length) {
-		} else if (sBinary.length() < Bin_Length) {
+		if (fBinary.length() <= Bin_Length) {
+		} else if (sBinary.length() <= Bin_Length) {
 		} else {
 			throw new IllegalArgumentException("Too long binary, Mason.");
 		}

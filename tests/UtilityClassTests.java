@@ -8,6 +8,7 @@ public class UtilityClassTests {
 
 	private String fBinary = "110101000000110111001101";
 	private String sBinary = "001000011110011101001111";
+	private String tBinary = "101010101010101010101010";
 	private String uBinary = "00100U011110011101001111";
 	private String lBinary = "0010000111100111010011110000";
 
@@ -75,7 +76,9 @@ public class UtilityClassTests {
 
 
 	@Test public void BitwiseAND_NormalInput_Burdegi24BitUfall() {
-		assertEquals(("0001"),Utility.bitwiseAnd("0001","0011"));
+		assertEquals(("000000000000010101001101"),Utility.bitwiseAnd(fBinary,sBinary));
+		assertEquals(("010100000000000111001000"),Utility.bitwiseAnd(fBinary,tBinary));
+		assertEquals(("000000010101001101001000"),Utility.bitwiseAnd(tBinary,sBinary));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
@@ -89,16 +92,18 @@ public class UtilityClassTests {
 	}
 
 	@Test public void BitwiseOR_NormalInput_Burdegi24BitUfall() {
-		
+		assertEquals(("111101011110111111001111"),Utility.bitwiseOr(fBinary,sBinary));
+		assertEquals(("111111101010111111101111"),Utility.bitwiseOr(fBinary,tBinary));
+		assertEquals(("101010111110111111101111"),Utility.bitwiseOr(tBinary,sBinary));
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void BitwiseOR__ForLangString_ThrowException() {
-		Utility.bitwiseOR(lBinary, sBinary);
+		Utility.bitwiseOr(lBinary, sBinary);
 	}
 
 	@Test(expected = IllegalArgumentException.class)
 	public void BitwiseOR_StringMedUlovlig_ThrowException() {
-		Utility.bitwiseOR(uBinary, sBinary);
+		Utility.bitwiseOr(uBinary, sBinary);
 	}
 }
