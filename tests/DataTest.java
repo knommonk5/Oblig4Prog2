@@ -1,9 +1,6 @@
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.junit.Assert.assertThat;
-import static org.hamcrest.CoreMatchers.is;
-import static org.hamcrest.CoreMatchers.nullValue;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -75,7 +72,7 @@ public class DataTest {
 
 	@Test
 	public void saveResults_normalInput_saveValues() {
-		data.saveResults("123abc 1 " + fString + " " + sString);
+		data.save("123abc 1 " + fString + " " + sString);
 		assertEquals("1", data.getEntry("123aabc").getOperator());
 		assertEquals(fString, data.getEntry("123aabc").getFString());
 		assertEquals(sString, data.getEntry("123aabc").getSString());
@@ -85,8 +82,8 @@ public class DataTest {
 
 	@Test
 	public void saveResults_duplicatedKey_shouldSaveInLog() {
-		data.saveResults("123abc 1 " + fString + " " + sString);
-		data.saveResults("123abc 2 " + sString + " " + fString);
+		data.save("123abc 1 " + fString + " " + sString);
+		data.save("123abc 2 " + sString + " " + fString);
 		assertEquals("2",data.getDuplicates().get( 0 ).getOperator());
 		assertEquals(sString,data.getDuplicates().get( 0 ).getFirstString());
 		assertEquals(fString,data.getDuplicates().get( 0 ).getSecondString());
